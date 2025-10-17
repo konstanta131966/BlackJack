@@ -21,7 +21,7 @@ public class BlackjackGUI{
     private Blackjack game; //declaring the game variable
 
     public BlackjackGUI(){
-        game = new Blackjack(); // GUI "owns" the backend
+        game = new Blackjack(); // GUI connects to the backend
         frame = new JFrame("BlackJack 21");
         gamePanel = new GamePanel(game);
         gamePanel.setLayout(new BorderLayout());
@@ -136,10 +136,15 @@ public class BlackjackGUI{
             g.setFont(new Font("SansSerif", Font.PLAIN, 28));
             g.setColor(Color.YELLOW);
 
-            if (showPlayerSum)
-                g.drawString("You got " + game.getPlayerSum(), 210, 250);
-            if (showDealerSum)
-                g.drawString("Dealer got " + game.getDealerSum(), 210, 250);
+            String output;
+            if (showPlayerSum) {
+                output = String.format("You got %s", game.getPlayerSum());
+                drawCenteredString(g,output);
+            }
+            if (showDealerSum){
+                output = String.format("You got %s", game.getDealerSum());
+                drawCenteredString(g,output);
+            }
             if (showMessageSum) {
                 String message;
                 switch (game.winner()) {
@@ -149,18 +154,16 @@ public class BlackjackGUI{
                 }
                 g.setFont(new Font("Serif", Font.PLAIN, 36));
                 g.setColor(Color.WHITE);
-                drawCenteredString(g,message, 260);
+                drawCenteredString(g,message);
             }
         }
 
-        private void drawCenteredString(Graphics g, String text, int y) {
+        private void drawCenteredString(Graphics g, String text) {
             FontMetrics fm = g.getFontMetrics();
             int textWidth = fm.stringWidth(text);
-            int x = (boardWidth - textWidth) /2 ;
-            g.drawString(text, x, y);
+            int x = (boardWidth - textWidth)/2;
+            g.drawString(text, x, 260);
         }
-
-
 
         private boolean showPlayerSum = false;
         private boolean showDealerSum = false;
