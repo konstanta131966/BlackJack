@@ -51,7 +51,7 @@ public class Blackjack {
 		}
 
         public String getImagePath(){
-            return "../cards/" + toString() + ".png";
+            return "/cards/" + toString() + ".png";
         }
 
 		public boolean isAce(){

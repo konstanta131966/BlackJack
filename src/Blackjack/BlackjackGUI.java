@@ -104,7 +104,7 @@ public class BlackjackGUI{
         private void drawDealer(Graphics2D g) {
             try {
                 //draw dealer's closed card
-                Image closedCardImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("../cards/BACK.png"))).getImage();
+                Image closedCardImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("/cards/BACK.png"))).getImage();
                 if (!stayButton.isEnabled()) {
                     closedCardImg = new ImageIcon(getClass().getResource(game.getClosedCard().getImagePath())).getImage();
                 }
@@ -149,14 +149,14 @@ public class BlackjackGUI{
                 }
                 g.setFont(new Font("Serif", Font.PLAIN, 36));
                 g.setColor(Color.WHITE);
-                drawCenteredString(g,message, 260, 250);
+                drawCenteredString(g,message, 260);
             }
         }
 
-        private void drawCenteredString(Graphics g, String text, int y, int panelWidth) {
+        private void drawCenteredString(Graphics g, String text, int y) {
             FontMetrics fm = g.getFontMetrics();
             int textWidth = fm.stringWidth(text);
-            int x = (panelWidth - textWidth) * 4 ;
+            int x = (boardWidth - textWidth) /2 ;
             g.drawString(text, x, y);
         }
 
